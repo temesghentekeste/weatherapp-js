@@ -1,0 +1,17 @@
+import { geolocationKey } from './key';
+class GeoLocation {
+  constructor(city) {
+    this.baseURI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?limit=2&access_token=${geolocationKey}`;
+  }
+
+  async getGeolocation() {
+    const response = await fetch(this.baseURI);
+    if( response.status !== 200) {
+     return new Error('Unable to fetch Location information');
+    }
+    return response.json();
+  }
+};
+
+
+export default GeoLocation;
