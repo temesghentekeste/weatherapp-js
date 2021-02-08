@@ -1,7 +1,7 @@
 import { geolocationKey } from './key';
 class GeoLocation {
   constructor(city) {
-    this.baseURI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?limit=2&access_token=${geolocationKey}`;
+    this.baseURI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?limit=1&access_token=${geolocationKey}`;
   }
 
   async getGeolocation() {

@@ -17,18 +17,31 @@ const App = (() => {
     UIContent.append(card);
   };
 
-  const getGeolocation = () => {
-    const geolocation = new Geolocation('washington');
-    geolocation
-      .getGeolocation()
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+  const getWeatherInfo = () => {
+    const UISearchCityForm = document.querySelector('form');
+
+    UISearchCityForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const city = UISearchCityForm.city.value.trim();
+      const geolocation = new Geolocation(city);
+      geolocation
+        .getGeolocation()
+        .then((data) => {
+          let {features} = data
+          features = features[0]
+          let {place_name, geometry} = features;
+          let { coordinates } = geometry;
+        })
+        .catch((err) => console.log(err));
+      UISearchCityForm.reset();
+    });
   };
 
   return {
     init() {
       addUIComponents();
-      getGeolocation();
+      getWeatherInfo();
     },
   };
 })();
