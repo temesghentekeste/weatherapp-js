@@ -32,6 +32,7 @@ const App = (() => {
           features = features[0]
           let {place_name, geometry} = features;
           let { coordinates } = geometry;
+          console.log(place_name, coordinates);
         })
         .catch((err) => console.log(err));
       UISearchCityForm.reset();
