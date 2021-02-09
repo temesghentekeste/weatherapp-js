@@ -10,6 +10,46 @@ const App = (() => {
   const UIContent = document.querySelector('#content');
   UIContent.classList.add('container');
 
+  const getImage = (name) => `./src/assets/${name}.jpg`;
+
+  const render = (data, place_name) => {
+    const cityDetailsInfo = document.querySelector('.details');
+    const card = document.querySelector('.card');
+    const icon = document.querySelector('.icon img');
+    const time = document.querySelector('img.weather-condition');
+
+    const { main, weather } = data;
+    // console.log(main, weather);
+    // console.log(main.temp, weather[0].description);
+    console.log(weather);
+    const html = `
+      <h5 class="my-3">
+      <!-- City Name -->
+        ${place_name}
+      </h5>
+      <div class="my-3">
+        <!-- Weather Conditions -->
+        ${weather[0].description}
+      </div>
+      <div class="display-4 my-4">
+        <span>${main.temp}</span>
+        <span>&deg;C</span>
+      </div>
+  `;
+    cityDetailsInfo.innerHTML = html;
+
+    // setting current weather condition image
+    const imgSrc = getImage(weather[0].main);
+    time.setAttribute('src', imgSrc);
+
+    const iconSrc = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
+    icon.setAttribute('src', iconSrc);
+
+    if (card.classList.contains('d-none')) {
+      card.classList.remove('d-none');
+    }
+  };
+
   const addUIComponents = () => {
     const form = getForm();
     UIContent.append(form);
@@ -18,12 +58,12 @@ const App = (() => {
     UIContent.append(card);
   };
 
-  const getWeatherInfo = (lat, lon) => {
+  const getWeatherInfo = (lat, lon, place_name) => {
     const weather = new Weather();
     weather
       .getWeatherConditions(lat, lon)
       .then((data) => {
-        console.log(data);
+        render(data, place_name);
       })
       .catch((err) => console.log(err));
   };
@@ -39,11 +79,13 @@ const App = (() => {
       geolocation
         .getGeolocation()
         .then((data) => {
+          console.log("******");
+          console.log(data);
           let { features } = data;
           features = features[0];
           let { place_name, geometry } = features;
           let { coordinates } = geometry;
-          getWeatherInfo(coordinates[1], coordinates[0]);
+          getWeatherInfo(coordinates[1], coordinates[0], place_name);
         })
         .catch((err) => console.log(err));
       UISearchCityForm.reset();

@@ -3,7 +3,7 @@ const getCard = () => {
   card.classList.add('card', 'rounded', 'd-none');
   
   const html = `
-        <img src="https://via.placeholder.com/150" class="time card-img-top img-fluid">
+        <img src="https://via.placeholder.com/150" class="weather-condition card-img-top img-fluid">
         <div class="icon bg-light mx-auto text-center">
           <!-- Weather Icon -->
           <img src="" alt="">

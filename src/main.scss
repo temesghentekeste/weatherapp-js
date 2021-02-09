@@ -1,1 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+
+body {
+  background: #eeedec;
+  letter-spacing: 0.2em;
+  font-size: 0.8em;
+}
+
+.details {
+  margin-top: -60px;
+}
+
+.card-img-top {
+  height: 46vh;
+  object-fit: cover;
+}
