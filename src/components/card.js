@@ -1,7 +1,7 @@
 const getCard = () => {
   const card = document.createElement('div');
   card.classList.add('card', 'rounded', 'd-none');
-  
+
   const html = `
         <img src="https://via.placeholder.com/150" class="weather-condition card-img-top img-fluid">
         <div class="icon bg-light mx-auto text-center">
@@ -21,12 +21,18 @@ const getCard = () => {
             <span>Temp</span>
             <span>&deg;C</span>
           </div>
+          <div class="card-footer">
+            <div className="min">
+             <span>Min: 20</span>
+             <span>Max: 40</span>
+            </div>
+          </div>
         </div>
   `;
 
   card.innerHTML = html;
-  
+
   return card;
-}
+};
 
 export default getCard;

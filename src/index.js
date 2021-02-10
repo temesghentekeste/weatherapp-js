@@ -18,7 +18,6 @@ const App = (() => {
     const icon = document.querySelector('.icon img');
     const time = document.querySelector('img.weather-condition');
 
-    
     const { main, weather } = data;
     console.log(main, weather, weather[0].main);
     const html = `
@@ -33,6 +32,19 @@ const App = (() => {
       <div class="display-4 my-4">
         <span>${main.temp}</span>
         <span>&deg;C</span>
+      </div>
+      <div class="card-footer">
+        <div className="min">
+          <span>Min: 20</span>
+          <span>Max: 40</span>
+        </div>
+        <div className="min">
+          <span>Humidity: 20%</span>
+          <span>Pressure: 40</span><span class="text-lowercase"> mb</span> 
+        </div>
+         <div className="min">
+          <span>Wind: 20&deg; Speed: 40m/s</span>
+        </div>
       </div>
   `;
     cityDetailsInfo.innerHTML = html;
@@ -66,14 +78,14 @@ const App = (() => {
     //     render(list[0], city.name, city.country);
     //   })
     //   .catch((err) => console.log(err));
-      
-      let response = await weather.getWeatherConditions(cityName);
-      const { city, list } = response;
-      const country = new Country();
-      response = await country.getCountry(city.country);
-      console.log('response', response);
-      let {name: countryName} = response
-      render(list[0], city.name, countryName);
+
+    let response = await weather.getWeatherConditions(cityName);
+    const { city, list } = response;
+    const country = new Country();
+    response = await country.getCountry(city.country);
+    console.log('response', response);
+    let { name: countryName } = response;
+    render(list[0], city.name, countryName);
   };
 
   const loadEventListener = () => {
