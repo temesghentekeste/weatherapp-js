@@ -34,7 +34,7 @@ const App = (() => {
         <span>${temp}</span>
         <span>&deg;C</span>
       </div>
-      <div class="card-footer d-flex justify-content-around">
+      <div class="card-footer d-flex justify-content-around align-items-center">
         <div className="min">
            Min: <span>${temp_min}</span>
           <span>&deg;C</span>
@@ -47,6 +47,14 @@ const App = (() => {
         </div>
          <div className="wind">
           <span>Wind: 20&deg; Speed: 40m/s</span>
+        </div>
+        <span class="mr-0">fahrenheit</span><div class="switch ml-0">
+         <input
+            id="switch-1"
+            type="checkbox"
+            class="switch-input chk-status"
+          />
+          <label for="switch-1" class="switch-label">fahrenheit</label>
         </div>
       </div>
   `;
