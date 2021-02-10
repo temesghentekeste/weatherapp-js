@@ -6,6 +6,14 @@ body {
   font-size: 0.8em;
 }
 
+#content{
+  margin-top: 2rem;
+}
+
+form {
+  margin-bottom: 2rem;
+}
+
 .details {
   margin-top: -60px;
 }
@@ -13,4 +21,12 @@ body {
 .card-img-top {
   height: 46vh;
   object-fit: cover;
+}
+
+.icon {
+  position: relative;
+  top: -13px;
+  left: 202px;
+  border-radius: 50%;
+  width: 100px;
 }

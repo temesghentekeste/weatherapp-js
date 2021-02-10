@@ -4,6 +4,7 @@ import './mobile.scss';
 import getForm from './components/form';
 import getCard from './components/card';
 import Weather from './api/weather';
+import Country from './api/country';
 
 const App = (() => {
   const UIContent = document.querySelector('#content');
@@ -11,18 +12,19 @@ const App = (() => {
 
   const getImage = (name) => `./src/assets/${name}.jpg`;
 
-  const render = (data, city) => {
+  const render = (data, city, countryName) => {
     const cityDetailsInfo = document.querySelector('.details');
     const card = document.querySelector('.card');
     const icon = document.querySelector('.icon img');
     const time = document.querySelector('img.weather-condition');
 
+    
     const { main, weather } = data;
     console.log(main, weather, weather[0].main);
     const html = `
       <h5 class="my-3">
       <!-- City Name -->
-        ${city}
+        ${city}, ${countryName}
       </h5>
       <div class="my-3">
         <!-- Weather Conditions -->
@@ -55,15 +57,23 @@ const App = (() => {
     UIContent.append(card);
   };
 
-  const getWeatherInfo = (city) => {
+  const getWeatherInfo = async (cityName) => {
     const weather = new Weather();
-    weather
-      .getWeatherConditions(city)
-      .then((data) => {
-        const {city, list} = data;
-        render(list[0], city.name);
-      })
-      .catch((err) => console.log(err));
+    // weather
+    //   .getWeatherConditions(city)
+    //   .then((data) => {
+    //     const { city, list } = data;
+    //     render(list[0], city.name, city.country);
+    //   })
+    //   .catch((err) => console.log(err));
+      
+      let response = await weather.getWeatherConditions(cityName);
+      const { city, list } = response;
+      const country = new Country();
+      response = await country.getCountry(city.country);
+      console.log('response', response);
+      let {name: countryName} = response
+      render(list[0], city.name, countryName);
   };
 
   const loadEventListener = () => {
@@ -73,8 +83,8 @@ const App = (() => {
       e.preventDefault();
 
       const city = UISearchCityForm.city.value.trim();
-     
-      getWeatherInfo(city)
+
+      getWeatherInfo(city);
       UISearchCityForm.reset();
     });
   };
