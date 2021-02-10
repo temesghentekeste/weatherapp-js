@@ -19,7 +19,7 @@ const getTemperature = (temp, min, max, scale) => {
   temp = roundToTwo(temp);
   min = roundToTwo(min);
   max = roundToTwo(max);
-  
+
   result = {
     temp,
     min,

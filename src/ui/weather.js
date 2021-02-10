@@ -3,14 +3,15 @@ import getImage from '../utils/image';
 
 
 const render = (data, city, countryName) => {
-
   const cityDetailsInfo = document.querySelector('.details');
   const card = document.querySelector('.card');
   const icon = document.querySelector('.icon img');
   const time = document.querySelector('img.weather-condition');
 
   const { main, weather } = data;
-  const { humidity, pressure, temp, temp_min, temp_max } = main;
+  const {
+    humidity, pressure, temp, temp_min: tempMin, temp_max: tempMax,
+  } = main;
   console.log(data, main, weather, weather[0].main);
   const html = `
       <h5 class="my-3">
@@ -27,9 +28,9 @@ const render = (data, city, countryName) => {
       </div>
       <div class="card-footer d-flex justify-content-around align-items-center">
         <div class="min-max">
-           Min: <span class="min">${temp_min}</span>
+           Min: <span class="min">${tempMin}</span>
           <span>&deg;C</span>
-           Max: <span class="max">${temp_max}</span>
+           Max: <span class="max">${tempMax}</span>
           <span>&deg;C</span>
         </div>
         <div class="pressure">
@@ -64,8 +65,7 @@ const render = (data, city, countryName) => {
   }
 
   const UIChKFahrenheit = document.querySelector('.chk-fahrenheit');
-  UIChKFahrenheit.addEventListener('change', e => convertTemperature(e))
-  
+  UIChKFahrenheit.addEventListener('change', e => convertTemperature(e));
 };
 
 

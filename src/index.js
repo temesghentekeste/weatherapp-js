@@ -5,13 +5,12 @@ import getForm from './components/form';
 import getCard from './components/card';
 import Weather from './api/weather';
 import Country from './api/country';
-import render from './ui/weather'
+import render from './ui/weather';
+
 const App = (() => {
   const UIContent = document.querySelector('#content');
   UIContent.classList.add('container');
 
-
-  
 
   const addUIComponents = () => {
     const form = getForm();
@@ -35,7 +34,7 @@ const App = (() => {
     const { city, list } = response;
     const country = new Country();
     response = await country.getCountry(city.country);
-    let { name: countryName } = response;
+    const { name: countryName } = response;
     render(list[0], city.name, countryName);
   };
 

@@ -1,6 +1,6 @@
 class Country {
   constructor() {
-    this.baseURI = `https://restcountries.eu/rest/v2/alpha/`;
+    this.baseURI = 'https://restcountries.eu/rest/v2/alpha/';
   }
 
   async getCountry(code) {
