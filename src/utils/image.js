@@ -1,3 +1,3 @@
-const getImage = (name) => `./src/assets/${name}.jpg`;
+const getImage = (name, now) => `./src/assets/${now}/${name}.jpg`;
 
 export default getImage;

@@ -16,6 +16,9 @@ const render = (data, city, countryName) => {
     temp_max: tempMax,
   } = main;
   console.log(data, main, weather, weather[0].main);
+  let now = weather[0].icon;
+
+  now = now.includes('d') ? 'day' : 'night';
   const html = `
       <h5 class="my-3">
       <!-- City Name -->
@@ -57,7 +60,7 @@ const render = (data, city, countryName) => {
   cityDetailsInfo.innerHTML = html;
 
   // setting current weather condition image
-  const imgSrc = getImage(weather[0].main);
+  const imgSrc = getImage(weather[0].main, now);
   time.setAttribute('src', imgSrc);
 
   const iconSrc = `http://openweathermap.org/img/w/${weather[0].icon}.png`;
