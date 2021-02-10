@@ -36,18 +36,18 @@ const App = (() => {
         <span>&deg;C</span>
       </div>
       <div class="card-footer d-flex justify-content-around align-items-center">
-        <div className="min">
+        <div class="min-max">
            Min: <span class="min">${temp_min}</span>
           <span>&deg;C</span>
            Max: <span class="max">${temp_max}</span>
           <span>&deg;C</span>
         </div>
-        <div className="pressure">
+        <div class="pressure">
           <span>Humidity: ${humidity}%</span>
           <span>Pressure: ${pressure}</span><span class="text-lowercase"> mb</span> 
         </div>
-         <div className="wind">
-          <span>Wind: 20&deg; Speed: 40m/s</span>
+         <div class="wind">
+          <span>Wind: 20&deg; Speed: 40</span><span class="text-lowercase">m/s</span>
         </div>
         <span class="mr-0">fahrenheit</span>
         <div class="switch ml-0">
@@ -75,7 +75,7 @@ const App = (() => {
 
     const UIChKFahrenheit = document.querySelector('.chk-fahrenheit');
     UIChKFahrenheit.addEventListener('change', (e) => {
-
+      const UIMinMax = document.querySelector('.min-max');
       const UITemperature = document.querySelector('.temperature');
       const UIMin = document.querySelector('.min');
       const UIMax = document.querySelector('.max');
@@ -87,11 +87,25 @@ const App = (() => {
       console.log(current, currentMin, currentMax);
 
       if (e.target.checked) {
-        const { temp, min, max } = getTemperature(current, currentMin, currentMax, 'F');
+        const { temp, min, max } = getTemperature(
+          current,
+          currentMin,
+          currentMax,
+          'F'
+        );
 
         UITemperature.innerHTML = `
         <span>${temp}</span>
         <span>&deg;F</span>
+        `;
+
+        UIMinMax.innerHTML = `
+              <div className="min-max">
+                Min: <span class="min">${min}</span>
+                <span>&deg;C</span>
+                Max: <span class="max">${max}</span>
+                <span>&deg;F</span>
+              </div>
         `;
       } else {
         const { temp, min, max } = getTemperature(
@@ -105,6 +119,15 @@ const App = (() => {
           <span>${temp}</span>
         <span>&deg;C</span>
           `;
+
+          UIMinMax.innerHTML = `
+              <div className="min-max">
+                Min: <span class="min">${min}</span>
+                <span>&deg;C</span>
+                Max: <span class="max">${max}</span>
+                <span>&deg;C</span>
+              </div>
+        `;
       }
     });
   };

@@ -22,9 +22,9 @@ const getCard = () => {
             <span>&deg;C</span>
           </div>
           <div class="card-footer">
-            <div class="min">
-             Min: <span class="min">20</span>
-             Max: <span class="max">40</span>
+            <div class="min-max">
+             Min: <span class="min">20</span><span>&deg;C</span>
+             Max: <span class="max">40</span><span>&deg;C</span>
             </div>
           </div>
           <span class="mr-0">fahrenheit</span>
