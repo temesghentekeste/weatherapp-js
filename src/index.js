@@ -3,7 +3,6 @@ import './mobile.scss';
 
 import getForm from './components/form';
 import getCard from './components/card';
-import Geolocation from './api/geolocation';
 import Weather from './api/weather';
 
 const App = (() => {
@@ -12,20 +11,18 @@ const App = (() => {
 
   const getImage = (name) => `./src/assets/${name}.jpg`;
 
-  const render = (data, place_name) => {
+  const render = (data, city) => {
     const cityDetailsInfo = document.querySelector('.details');
     const card = document.querySelector('.card');
     const icon = document.querySelector('.icon img');
     const time = document.querySelector('img.weather-condition');
 
     const { main, weather } = data;
-    // console.log(main, weather);
-    // console.log(main.temp, weather[0].description);
-    console.log(weather);
+    console.log(main, weather);
     const html = `
       <h5 class="my-3">
       <!-- City Name -->
-        ${place_name}
+        ${city}
       </h5>
       <div class="my-3">
         <!-- Weather Conditions -->
@@ -58,12 +55,13 @@ const App = (() => {
     UIContent.append(card);
   };
 
-  const getWeatherInfo = (lat, lon, place_name) => {
+  const getWeatherInfo = (city) => {
     const weather = new Weather();
     weather
-      .getWeatherConditions(lat, lon)
+      .getWeatherConditions(city)
       .then((data) => {
-        render(data, place_name);
+        const {city, list} = data;
+        render(list[0], city.name);
       })
       .catch((err) => console.log(err));
   };
@@ -75,19 +73,20 @@ const App = (() => {
       e.preventDefault();
 
       const city = UISearchCityForm.city.value.trim();
-      const geolocation = new Geolocation(city);
-      geolocation
-        .getGeolocation()
-        .then((data) => {
-          console.log("******");
-          console.log(data);
-          let { features } = data;
-          features = features[0];
-          let { place_name, geometry } = features;
-          let { coordinates } = geometry;
-          getWeatherInfo(coordinates[1], coordinates[0], place_name);
-        })
-        .catch((err) => console.log(err));
+      // const geolocation = new Geolocation(city);
+      // geolocation
+      //   .getGeolocation()
+      //   .then((data) => {
+      //     console.log("******");
+      //     console.log(data);
+      //     let { features } = data;
+      //     features = features[0];
+      //     let { place_name, geometry } = features;
+      //     let { coordinates } = geometry;
+      //     getWeatherInfo(coordinates[1], coordinates[0], place_name);
+      //   })
+      //   .catch((err) => console.log(err));
+      getWeatherInfo(city)
       UISearchCityForm.reset();
     });
   };

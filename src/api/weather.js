@@ -1,12 +1,13 @@
 import { weatherAPIKey as apiKey} from './key';
 class Weather {
   constructor() {
-    this.baseURI = `https://api.openweathermap.org/data/2.5/weather`;
+    this.baseURI = `http://api.openweathermap.org/data/2.5/forecast`;
   }
 
-  async getWeatherConditions(lat, lon) {
-    this.baseURI += `?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
 
+  async getWeatherConditions(city) {
+    this.baseURI += `?q=${city}&appid=${apiKey}&units=metric`;
+    
     const response = await fetch(this.baseURI);
 
     if( response.status !== 200) {
@@ -14,6 +15,7 @@ class Weather {
     }
     
      const data = await response.json();
+     console.log(data);
      return data;
   }
 };
