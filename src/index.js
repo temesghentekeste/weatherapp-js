@@ -18,7 +18,7 @@ const App = (() => {
     const time = document.querySelector('img.weather-condition');
 
     const { main, weather } = data;
-    console.log(main, weather);
+    console.log(main, weather, weather[0].main);
     const html = `
       <h5 class="my-3">
       <!-- City Name -->
@@ -73,19 +73,7 @@ const App = (() => {
       e.preventDefault();
 
       const city = UISearchCityForm.city.value.trim();
-      // const geolocation = new Geolocation(city);
-      // geolocation
-      //   .getGeolocation()
-      //   .then((data) => {
-      //     console.log("******");
-      //     console.log(data);
-      //     let { features } = data;
-      //     features = features[0];
-      //     let { place_name, geometry } = features;
-      //     let { coordinates } = geometry;
-      //     getWeatherInfo(coordinates[1], coordinates[0], place_name);
-      //   })
-      //   .catch((err) => console.log(err));
+     
       getWeatherInfo(city)
       UISearchCityForm.reset();
     });
