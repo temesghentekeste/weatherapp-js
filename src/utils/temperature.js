@@ -1,8 +1,10 @@
+import roundToTwo from './round_to_two';
+
 const getTemperature = (temp, min, max, scale) => {
-  temp = parseFloat(temp)
-  min = parseFloat(min)
+  temp = parseFloat(temp);
+  min = parseFloat(min);
   max = parseFloat(max);
-  
+
   let result = {};
   if (scale === 'F') {
     temp = (temp * 9) / 5 + 32;
@@ -10,10 +12,14 @@ const getTemperature = (temp, min, max, scale) => {
     max = (max * 9) / 5 + 32;
   } else {
     temp = ((temp - 32) * 5) / 9;
-    min =  ((min - 32) * 5) / 9;
-    max =  ((max - 32) * 5) / 9;
+    min = ((min - 32) * 5) / 9;
+    max = ((max - 32) * 5) / 9;
   }
 
+  temp = roundToTwo(temp);
+  min = roundToTwo(min);
+  max = roundToTwo(max);
+  
   result = {
     temp,
     min,
