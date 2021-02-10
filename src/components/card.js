@@ -17,15 +17,24 @@ const getCard = () => {
             <!-- Weather Conditions -->
             Weather Conditions
           </div>
-          <div class="display-4 my-2">
+          <div class="display-4 my-2 temperature">
             <span>Temp</span>
             <span>&deg;C</span>
           </div>
           <div class="card-footer">
-            <div className="min">
-             <span>Min: 20</span>
-             <span>Max: 40</span>
+            <div class="min">
+             Min: <span class="min">20</span>
+             Max: <span class="max">40</span>
             </div>
+          </div>
+          <span class="mr-0">fahrenheit</span>
+          <div class="switch ml-0">
+          <input
+              id="switch-1"
+              type="checkbox"
+              class="switch-input chk-fahrenheit"
+            />
+            <label for="switch-1" class="switch-label">fahrenheit</label>
           </div>
         </div>
   `;
