@@ -19,7 +19,8 @@ const App = (() => {
     const time = document.querySelector('img.weather-condition');
 
     const { main, weather } = data;
-    console.log(main, weather, weather[0].main);
+    const { humidity, pressure, temp, temp_min, temp_max } = main;
+    console.log(data, main, weather, weather[0].main);
     const html = `
       <h5 class="my-3">
       <!-- City Name -->
@@ -30,19 +31,21 @@ const App = (() => {
         ${weather[0].description}
       </div>
       <div class="display-4 my-4">
-        <span>${main.temp}</span>
+        <span>${temp}</span>
         <span>&deg;C</span>
       </div>
-      <div class="card-footer">
+      <div class="card-footer d-flex justify-content-around">
         <div className="min">
-          <span>Min: 20</span>
-          <span>Max: 40</span>
+           Min: <span>${temp_min}</span>
+          <span>&deg;C</span>
+           Max: <span>${temp_max}</span>
+          <span>&deg;C</span>
         </div>
-        <div className="min">
-          <span>Humidity: 20%</span>
-          <span>Pressure: 40</span><span class="text-lowercase"> mb</span> 
+        <div className="pressure">
+          <span>Humidity: ${humidity}%</span>
+          <span>Pressure: ${pressure}</span><span class="text-lowercase"> mb</span> 
         </div>
-         <div className="min">
+         <div className="wind">
           <span>Wind: 20&deg; Speed: 40m/s</span>
         </div>
       </div>
@@ -83,7 +86,6 @@ const App = (() => {
     const { city, list } = response;
     const country = new Country();
     response = await country.getCountry(city.country);
-    console.log('response', response);
     let { name: countryName } = response;
     render(list[0], city.name, countryName);
   };
