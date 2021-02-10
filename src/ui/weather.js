@@ -1,7 +1,6 @@
 import convertTemperature from '../events/convert_temp';
 import getImage from '../utils/image';
 
-
 const render = (data, city, countryName) => {
   const cityDetailsInfo = document.querySelector('.details');
   const card = document.querySelector('.card');
@@ -10,7 +9,11 @@ const render = (data, city, countryName) => {
 
   const { main, weather } = data;
   const {
-    humidity, pressure, temp, temp_min: tempMin, temp_max: tempMax,
+    humidity,
+    pressure,
+    temp,
+    temp_min: tempMin,
+    temp_max: tempMax,
   } = main;
   console.log(data, main, weather, weather[0].main);
   const html = `
@@ -65,8 +68,7 @@ const render = (data, city, countryName) => {
   }
 
   const UIChKFahrenheit = document.querySelector('.chk-fahrenheit');
-  UIChKFahrenheit.addEventListener('change', e => convertTemperature(e));
+  UIChKFahrenheit.addEventListener('change', (e) => convertTemperature(e));
 };
-
 
 export default render;

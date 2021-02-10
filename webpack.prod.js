@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const path = require('path');
 const common = require('./webpack.common');
@@ -19,6 +20,10 @@ module.exports = merge(common, {
         removeComments: true,
       },
     }),
+    // Add your plugin
+    new CopyPlugin({
+      patterns: [{ from: 'src/assets', to: 'src/assets' }],
+    }),
   ],
   output: {
     filename: '[name].js',
@@ -28,11 +33,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.scss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
     ],
   },
