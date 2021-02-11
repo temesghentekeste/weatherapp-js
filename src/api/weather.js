@@ -2,7 +2,7 @@ import { weatherAPIKey as apiKey } from './key';
 
 class Weather {
   constructor() {
-    this.baseURI = 'http://api.openweathermap.org/data/2.5/forecast';
+    this.baseURI = 'https://api.openweathermap.org/data/2.5/forecast';
   }
 
 
