@@ -23,19 +23,18 @@ const App = (() => {
 
   const getWeatherInfo = async (cityName) => {
     try {
-      
       const weather = new Weather();
 
-    let response = await weather.getWeatherConditions(cityName);
-    const { city, list } = response;
-    
-    const country = new Country();
-    response = await country.getCountry(city.country);
-    const { name: countryName } = response;
+      let response = await weather.getWeatherConditions(cityName);
+      const { city, list } = response;
 
-    render(list[0], city.name, countryName);
+      const country = new Country();
+      response = await country.getCountry(city.country);
+      const { name: countryName } = response;
+
+      render(list[0], city.name, countryName);
     } catch {
-      const error = "Something went wrong. Please search for a valid city!"
+      const error = 'Something went wrong. Please search for a valid city!';
       document.querySelector('.loading').remove();
       showError(error);
     }
@@ -49,7 +48,7 @@ const App = (() => {
 
       const city = UISearchCityForm.city.value.trim();
 
-     
+
       const loader = getLoader();
       UISearchCityForm.after(loader);
       document.querySelector('.main-card').style.display = 'none';

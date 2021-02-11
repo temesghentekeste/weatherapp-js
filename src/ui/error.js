@@ -15,4 +15,3 @@ const showError = (error) => {
 };
 
 export default showError;
-
