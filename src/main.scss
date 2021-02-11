@@ -39,7 +39,7 @@ form {
   width: 300px;
 
   img {
-    width: 100%;;
+    width: 100%;
   }
 }
 
@@ -51,6 +51,7 @@ form {
   .switch-input {
     display: none;
   }
+
   .switch-label {
     display: block;
     width: 48px;
@@ -88,7 +89,6 @@ form {
       -webkit-transition: left 0.25s ease;
       transition: left 0.25s ease;
     }
-    
   }
 }
 
@@ -99,4 +99,3 @@ form {
 .switch-input:checked + .switch-label::after {
   left: 24px;
 }
-

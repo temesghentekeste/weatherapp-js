@@ -18,17 +18,14 @@
 
 ## About <a name = "about"></a>
 
-Todo JS is a JavaScript project that is intended to showcase an understanding of such JavaScript concepts as Objects, Factory Functions, The Module Pattern, and OOP. The project also illustrates the concepts of Single Responsibility and Tightly Coupled Objects. The codebase is well structured into different modules using Webpack. To persist the data localStorage is implemented.
+Weatherapp JS is a JavaScript project that is intended to showcase an understanding asynchronous JavaScript  communication with promises or async/await and when to use them . The codebase is well structured into different modules using Webpack.
 
 <h3>Description <a name = "description"></a></h3>
 <h4>This project allows a user to:</h4>
-<li>Create a project</li>
-<li>Update a project</li>
-<li>Delete a project</li>
-<li>Add tasks to a project</li>
-<li>Update a particular task</li>
-<li>Delete task from a project</li>
-<li>Persist projects using browser's localStorage</li>
+<li>Search current weather condition of a given city</li>
+<li>Understand current min/max temperatures, humidty, pressure and wind speed of the given city </li>
+<li>Toggle temperature scales to and fro Celicius and Fahrenheit</li>
+<li>See useful error message if invalid city is searched</li>
 
 ## 🔴 Live Demo <a name = "live"></a>
 
