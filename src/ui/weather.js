@@ -6,6 +6,8 @@ const render = (data, city, countryName) => {
   const card = document.querySelector('.card');
   const icon = document.querySelector('.icon img');
   const time = document.querySelector('img.weather-condition');
+  document.querySelector('.loading').remove();
+  document.querySelector('.main-card').style.display = 'block';
 
   const { main, weather, sys } = data;
   const {
@@ -15,7 +17,7 @@ const render = (data, city, countryName) => {
     temp_min: tempMin,
     temp_max: tempMax,
   } = main;
-  let {pod: now} = sys;
+  let { pod: now } = sys;
   console.log(data, now);
 
   now = now === 'd' ? 'day' : 'night';

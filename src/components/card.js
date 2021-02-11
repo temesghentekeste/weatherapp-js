@@ -1,6 +1,6 @@
 const getCard = () => {
   const card = document.createElement('div');
-  card.classList.add('card', 'rounded', 'd-none');
+  card.classList.add('card', 'rounded', 'd-none', 'main-card');
 
   const html = `
         <img src="https://via.placeholder.com/150" class="weather-condition card-img-top img-fluid">
