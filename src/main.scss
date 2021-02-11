@@ -31,6 +31,18 @@ form {
   width: 100px;
 }
 
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 300px;
+
+  img {
+    width: 100%;;
+  }
+}
+
 .switch {
   position: relative;
   display: inline-block;

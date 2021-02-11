@@ -12,7 +12,7 @@ class Weather {
     const response = await fetch(this.baseURI);
 
     if (response.status !== 200) {
-      return new Error('Unable to fetch weather conditions');
+      return new Error('Something went wrong, please try again!');
     }
 
     const data = await response.json();

@@ -7,6 +7,7 @@ import Weather from './api/weather';
 import Country from './api/country';
 import render from './ui/weather';
 import getLoader from './components/loader';
+import showError from './ui/error';
 
 const App = (() => {
   const UIContent = document.querySelector('#content');
@@ -21,22 +22,23 @@ const App = (() => {
   };
 
   const getWeatherInfo = async (cityName) => {
-    const weather = new Weather();
-    // weather
-    //   .getWeatherConditions(city)
-    //   .then((data) => {
-    //     const { city, list } = data;
-    //     render(list[0], city.name, city.country);
-    //   })
-    //   .catch((err) => console.log(err));
+    try {
+      
+      const weather = new Weather();
 
     let response = await weather.getWeatherConditions(cityName);
     const { city, list } = response;
+    
     const country = new Country();
     response = await country.getCountry(city.country);
     const { name: countryName } = response;
 
     render(list[0], city.name, countryName);
+    } catch {
+      const error = "Something went wrong. Please search for a valid city!"
+      document.querySelector('.loading').remove();
+      showError(error);
+    }
   };
 
   const loadEventListener = () => {
@@ -47,8 +49,9 @@ const App = (() => {
 
       const city = UISearchCityForm.city.value.trim();
 
+     
       const loader = getLoader();
-      UISearchCityForm.append(loader);
+      UISearchCityForm.after(loader);
       document.querySelector('.main-card').style.display = 'none';
       setTimeout(() => {
         getWeatherInfo(city);

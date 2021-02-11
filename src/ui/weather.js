@@ -18,7 +18,6 @@ const render = (data, city, countryName) => {
     temp_max: tempMax,
   } = main;
   let { pod: now } = sys;
-  console.log(data, now);
 
   now = now === 'd' ? 'day' : 'night';
   const html = `

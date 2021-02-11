@@ -9,7 +9,7 @@ class Country {
     const response = await fetch(this.baseURI);
 
     if (response.status !== 200) {
-      return new Error('Unable to fetch country name');
+      return new Error('Something went wrong, please try again!');
     }
 
     const data = await response.json();
