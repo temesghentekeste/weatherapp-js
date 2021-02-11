@@ -7,7 +7,7 @@ const render = (data, city, countryName) => {
   const icon = document.querySelector('.icon img');
   const time = document.querySelector('img.weather-condition');
 
-  const { main, weather } = data;
+  const { main, weather, sys } = data;
   const {
     humidity,
     pressure,
@@ -15,12 +15,12 @@ const render = (data, city, countryName) => {
     temp_min: tempMin,
     temp_max: tempMax,
   } = main;
-  console.log(data, main, weather, weather[0].main);
-  let now = weather[0].icon;
+  let {pod: now} = sys;
+  console.log(data, now);
 
-  now = now.includes('d') ? 'day' : 'night';
+  now = now === 'd' ? 'day' : 'night';
   const html = `
-      <h5 class="my-3">
+      <h5 class="mt-5 mb-3">
       <!-- City Name -->
         ${city}, ${countryName}
       </h5>

@@ -3,7 +3,7 @@ const update = (temp, min, max, scale) => {
   const UITemperature = document.querySelector('.temperature');
   UITemperature.innerHTML = `
         <span>${temp}</span>
-        <span>&deg;F</span>
+        <span>&deg;${scale}</span>
         `;
 
   UIMinMax.innerHTML = `
